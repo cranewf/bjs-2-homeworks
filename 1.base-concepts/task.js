@@ -31,13 +31,13 @@ function calculateTotalMortgage(percent, contribution, amount, countMonths) {
 		return false;
 	}
 
-	let rateConversion = (percent / 100) / 12;
+	let monthlyRate = (percent / 100) / 12;
 
 	let loanBody = amount - contribution;
 
-	let monthlyPayment = loanBody * (rateConversion + (rateConversion / (((1 + rateConversion) ** countMonths) - 1)));
+	let monthlyPayment = loanBody * (monthlyRate + (monthlyRate / ((1 + monthlyRate) ** countMonths - 1)));
 
-	let totalAmount = rateConversion * countMonths + contribution;
+	let totalAmount = monthlyPayment * countMonths;
 
 	return Number(totalAmount.toFixed(2));
 
